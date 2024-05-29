@@ -23,4 +23,8 @@ public class Customer {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public int getTier() {
+        return tier;
+    }
 }

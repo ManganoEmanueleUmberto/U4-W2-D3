@@ -62,7 +62,9 @@ public class Main {
                     break;
 
                 case 4:
-                    List<Product> booksList = productsList.stream().filter(product -> product.getCategory().equals("books") && product.getPrice() > 100).collect(Collectors.toList());
+                    List<Product> booksList = productsList.stream()
+                            .filter(product -> product.getCategory().equals("books") && product.getPrice() > 100)
+                            .collect(Collectors.toList());
                     if (booksList.isEmpty()) {
                         System.out.println("Category books not found or the price is less than 100");
                         break;
@@ -75,12 +77,24 @@ public class Main {
                             .filter(order -> order.getProducts().stream().anyMatch(product -> product.getCategory().equals("baby")))
                             .toList();
                     System.out.println(babyList);
+                    break;
 
                 case 6:
-                    List<Product> boysList = productsList.stream().filter(product -> product.getCategory().equals("boys")).toList();
+                    List<Product> boysList = productsList.stream()
+                            .filter(product -> product.getCategory().equals("boys"))
+                            .toList();
+
                     boysList.forEach(product -> product.setPrice(product.getPrice() - ((product.getPrice() * 10) / 100)));
                     System.out.println(boysList);
-                
+                    break;
+
+                case 7:
+
+                    List<Order> list = orderList.stream()
+                            .filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isAfter(LocalDate.parse("2024-03-21")) && order.getOrderDate().isBefore(LocalDate.parse("2024-04-21")))
+                            .toList();
+
+                    System.out.println(list);
 
             }
 

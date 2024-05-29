@@ -38,7 +38,19 @@ public class Order {
                 '}';
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
     public List<Product> getProducts() {
         return products;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
     }
 }
