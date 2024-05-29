@@ -66,7 +66,11 @@ public class Main {
                         System.out.println(booksList);
                         break;
                     }
-
+                case 5:
+                    List<Order> babyList = orderList.stream()
+                            .filter(order -> order.getProducts().stream().anyMatch(product -> product.getCategory().equals("baby")))
+                            .toList();
+                    System.out.println(babyList);
 
             }
 

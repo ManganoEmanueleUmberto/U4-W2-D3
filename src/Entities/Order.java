@@ -37,4 +37,8 @@ public class Order {
                 ", customer=" + customer +
                 '}';
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }
