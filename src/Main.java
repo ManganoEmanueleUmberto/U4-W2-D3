@@ -20,7 +20,7 @@ public class Main {
         List<Order> orderList = new ArrayList<>();
 
         while (true) {
-            System.out.println("1. Add product to the cart\n2. Create Order \n3. Show order\n4. Show all products from the category books \n0. Exit");
+            System.out.println("1. Add product to the cart\n2. Create Order \n3. Show order\n4. Show all products from the category books \n5. Show orders containing at least one product in the category baby\n6. Check discount 10% on products from baby category \n0. Exit");
             choice = Integer.parseInt(sc.nextLine());
             if (choice == 0) break;
 
@@ -44,13 +44,17 @@ public class Main {
                     }
                     System.out.println("Enter the status of the order: ");
                     status = sc.nextLine();
+                    System.out.println("Enter the date of the order: (YYYY-MM-DD)");
+                    orderDate = LocalDate.parse(sc.nextLine());
+                    System.out.println("Enter the delivery date of the order: (YYYY-MM-DD) ");
+                    deliveryDate = LocalDate.parse(sc.nextLine());
                     System.out.println("Enter your name: ");
                     name = sc.nextLine();
                     System.out.println("Enter your tier: ");
                     tier = Integer.parseInt(sc.nextLine());
 
 
-                    orderList.add(new Order(status, productsList, new Customer(name, tier)));
+                    orderList.add(new Order(status, productsList, orderDate, deliveryDate, new Customer(name, tier)));
                     break;
 
                 case 3:
@@ -71,6 +75,12 @@ public class Main {
                             .filter(order -> order.getProducts().stream().anyMatch(product -> product.getCategory().equals("baby")))
                             .toList();
                     System.out.println(babyList);
+
+                case 6:
+                    List<Product> boysList = productsList.stream().filter(product -> product.getCategory().equals("boys")).toList();
+                    boysList.forEach(product -> product.setPrice(product.getPrice() - ((product.getPrice() * 10) / 100)));
+                    System.out.println(boysList);
+                
 
             }
 
